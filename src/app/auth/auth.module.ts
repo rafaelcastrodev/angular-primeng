@@ -12,14 +12,26 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { PasswordModule } from 'primeng/password';
-import { FormControlInvalidPipe } from '@app/shared/pipes/form-control-invalid.pipe';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { FormControlInvalidPipe } from '@shared/pipes/form-control-invalid.pipe';
 
 /**COMPONENTS */
 import { AuthComponent } from './auth.component';
 import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { ForgotPasswordComponent } from './forgot-password /forgot-password.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { FormHeaderComponent } from './shared/components/form-header/form-header.component';
+import { FormFooterComponent } from './shared/components/form-footer/form-footer.component';
 
 @NgModule({
-    declarations: [AuthComponent, SigninComponent],
+    declarations: [
+        AuthComponent,
+        SigninComponent,
+        SignupComponent,
+        RecoverPasswordComponent,
+        ForgotPasswordComponent,
+    ],
     exports: [],
     imports: [
         RouterModule,
@@ -32,6 +44,9 @@ import { SigninComponent } from './signin/signin.component';
         ButtonModule,
         DividerModule,
         PasswordModule,
+        OverlayPanelModule,
+        FormFooterComponent,
+        FormHeaderComponent,
         FormControlInvalidPipe,
         SharedModule,
     ],

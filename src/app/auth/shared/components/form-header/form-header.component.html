@@ -1,0 +1,8 @@
+<div *ngIf="imageUrl" class="{{ imageStyleClass }} mx-auto mb-4">
+    <img [src]="imageUrl" />
+</div>
+
+<div class="text-center text-900 my-5">
+    <div class="text-3xl font-medium mb-2" [innerHTML]="header"></div>
+    <div class="text-600" *ngIf="subHeader" [innerHTML]="subHeader"></div>
+</div>

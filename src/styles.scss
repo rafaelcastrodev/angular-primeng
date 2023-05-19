@@ -16,10 +16,10 @@ body {
     font-family: var(--font-family);
 }
 
-p-password.w-full {
-    .p-component {
-        width: 100% !important;
-    }
+.field .p-input-icon-right,
+.field .p-input-icon-left,
+p-password.w-full .p-component {
+    width: 100% !important;
 }
 
 .field {

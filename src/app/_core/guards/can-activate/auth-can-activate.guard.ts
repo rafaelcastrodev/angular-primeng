@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 import { appRoutesNames } from '@app/app-routes-names';
 
 /**SERVICES */
-import { AuthService } from '@app/auth/shared/auth.service';
+import { AuthService } from '@app/auth/shared/services/auth.service';
 
 export const AuthGuard = (next: ActivatedRouteSnapshot) => {
     return inject(AuthService)
