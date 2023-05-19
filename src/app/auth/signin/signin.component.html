@@ -1,0 +1,93 @@
+<!-- 
+    Full-width small than 576; Center until 992; Left side beyond that
+    class="surface-card w-full p-5 sm:p-6 fadein"
+ -->
+<div
+    class="surface-card w-screen sm:w-full h-screen sm:h-auto p-5 sm:p-6 fadein"
+>
+    <form [formGroup]="signInform" (ngSubmit)="onSubmit()">
+        <div class="w-8 mx-auto mb-4">
+            <img src="/assets/images/undraw_welcome.svg" />
+        </div>
+
+        <div class="field">
+            <label for="username" class="text-900">Email address</label>
+            <input
+                type="email"
+                formControlName="username"
+                id="username"
+                pInputText
+                class="w-full"
+            />
+            <small
+                *ngIf="formControls['username'] | formControlInvalid"
+                class="p-error"
+            >
+                <ng-container
+                    *ngIf="formControls['username'].hasError('required')"
+                >
+                    Email is required.
+                </ng-container>
+                <ng-container
+                    *ngIf="formControls['username'].hasError('email')"
+                >
+                    Invalid email format.
+                </ng-container>
+            </small>
+        </div>
+
+        <div class="field mb-2">
+            <label for="password" class="text-900">Password</label>
+
+            <p-password
+                id="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                formControlName="password"
+                class="block w-full"
+            ></p-password>
+        </div>
+
+        <div class="block">
+            <a class="text-blue-500 cursor-pointer">Forgot your password?</a>
+        </div>
+
+        <button
+            pButton
+            label="Login"
+            iconPos="right"
+            icon="pi pi-chevron-right"
+            class="w-full mt-5"
+            [loading]="isSubmitted"
+            [disabled]="signInform.invalid"
+        ></button>
+
+        <!-- ToDo Social Logins -->
+        <!-- <div class="mt-6 flex justify-content-between">
+        <button
+            pButton
+            label="Sign with Google"
+            icon="pi pi-google"
+            class="p-button-secondary w-full"
+        ></button>
+
+        <div class="w-1"></div>
+
+        <button
+            pButton
+            label="Sign with Facebook"
+            icon="pi pi-facebook"
+            class="p-button-secondary w-full"
+        ></button>
+    </div> -->
+    </form>
+
+    <p-divider align="center" styleClass="my-6">
+        <span class="text-sm">OR</span>
+    </p-divider>
+
+    <div class="text-center text-600">
+        Don't have an account?
+        <a class="text-blue-500 cursor-pointer">Sign up</a>
+    </div>
+</div>
