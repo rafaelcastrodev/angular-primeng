@@ -8,9 +8,8 @@ import { Component, Input } from '@angular/core';
     templateUrl: './form-header.component.html',
 })
 export class FormHeaderComponent {
-    @Input() imageUrl!: string;
+    @Input({ required: true }) imageUrl!: string;
     @Input() imageStyleClass!: string;
-    @Input() header!: string | undefined;
+    @Input({ required: true }) header!: string | undefined;
     @Input() subHeader!: string;
-    //{ required: true }
 }

@@ -5,45 +5,40 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { authRoutesNames } from '../auth-routes-names';
 
 @Component({
-    selector: 'app-signin',
-    templateUrl: './signin.component.html',
-    styleUrls: ['./signin.component.scss'],
+    selector: 'app-forgot-password',
+    templateUrl: './forgot-password.component.html',
+    styleUrls: ['./forgot-password.component.scss'],
 })
-export class SigninComponent {
-    signInForm: FormGroup;
+export class ForgotPasswordComponent {
+    forgotForm: FormGroup;
     isSubmitted!: boolean;
-    displayPassword!: boolean;
+    wasRecoverSended!: boolean;
     authRoutesNames = authRoutesNames;
     private formBuilder: FormBuilder = inject(FormBuilder);
 
     constructor() {
-        this.signInForm = this.formBuilder.group({
+        this.forgotForm = this.formBuilder.group({
             username: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(8)]],
         });
     }
 
     get formControls() {
-        return this.signInForm.controls;
+        return this.forgotForm.controls;
     }
 
     onSubmit() {
         this.isSubmitted = true;
 
-        if (this.signInForm.invalid) {
+        if (this.forgotForm.invalid) {
             this.isSubmitted = false;
             return;
         }
 
         const username: string = this.formControls['username'].value;
-        const password: string = this.formControls['password'].value;
 
         setTimeout(() => {
             this.isSubmitted = false;
+            this.wasRecoverSended = true;
         }, 2000);
-    }
-
-    showHidePassword() {
-        this.displayPassword = !this.displayPassword;
     }
 }

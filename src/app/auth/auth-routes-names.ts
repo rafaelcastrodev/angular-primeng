@@ -20,9 +20,15 @@ const FORGOT_PASSWORD: MenuItem = {
     url: 'forgot-password',
 };
 
+const VALIDATE_OTP: MenuItem = {
+    label: 'Validate OTP',
+    url: 'validate-otp',
+};
+
 export const authRoutesNames = {
     SIGNIN,
     SIGNUP,
     RECOVER_PASSWORD,
     FORGOT_PASSWORD,
+    VALIDATE_OTP,
 };

@@ -13,9 +13,8 @@ import { appRoutesNames } from '@app/app-routes-names';
 })
 export class FormFooterComponent {
     @Input() dividerText: string = 'OR';
-    @Input() highlighText!: string;
-    @Input() urlText!: string;
-    @Input() url!: string | undefined;
-    //{ required: true }
+    @Input({ required: true }) highlighText!: string;
+    @Input({ required: true }) urlText!: string;
+    @Input({ required: true }) url!: string | undefined;
     appRoutesNames = appRoutesNames;
 }

@@ -19,10 +19,11 @@ import { FormControlInvalidPipe } from '@shared/pipes/form-control-invalid.pipe'
 import { AuthComponent } from './auth.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { ForgotPasswordComponent } from './forgot-password /forgot-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { FormHeaderComponent } from './shared/components/form-header/form-header.component';
 import { FormFooterComponent } from './shared/components/form-footer/form-footer.component';
+import { ValidateOtpComponent } from './validate-otp/validate-otp.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { FormFooterComponent } from './shared/components/form-footer/form-footer
         SignupComponent,
         RecoverPasswordComponent,
         ForgotPasswordComponent,
+        ValidateOtpComponent,
     ],
     exports: [],
     imports: [

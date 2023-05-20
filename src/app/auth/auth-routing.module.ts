@@ -8,7 +8,8 @@ import { authRoutesNames } from './auth-routes-names';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
-import { ForgotPasswordComponent } from './forgot-password /forgot-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ValidateOtpComponent } from './validate-otp/validate-otp.component';
 
 const authRoutes: Routes = [
     {
@@ -35,6 +36,10 @@ const authRoutes: Routes = [
             {
                 path: authRoutesNames.FORGOT_PASSWORD.url,
                 component: ForgotPasswordComponent,
+            },
+            {
+                path: authRoutesNames.VALIDATE_OTP.url,
+                component: ValidateOtpComponent,
             },
         ],
     },

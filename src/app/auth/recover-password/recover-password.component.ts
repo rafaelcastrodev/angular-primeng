@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**MODELS */
 import { authRoutesNames } from '../auth-routes-names';
+import { MatchValidator } from '@core/form-validators/must-match.validator';
 
 @Component({
     selector: 'app-recover-password',
@@ -12,18 +13,29 @@ import { authRoutesNames } from '../auth-routes-names';
 export class RecoverPasswordComponent {
     recoverForm: FormGroup;
     isSubmitted!: boolean;
-    wasRecoverSended!: boolean;
+    displayPassword!: boolean;
     authRoutesNames = authRoutesNames;
     private formBuilder: FormBuilder = inject(FormBuilder);
 
     constructor() {
-        this.recoverForm = this.formBuilder.group({
-            username: ['', [Validators.required, Validators.email]],
-        });
+        this.recoverForm = this.formBuilder.group(
+            {
+                password: ['', [Validators.required, Validators.minLength(8)]],
+                confirmPassword: ['', [Validators.required]],
+            },
+            { validators: [MatchValidator('password', 'confirmPassword')] }
+        );
     }
 
     get formControls() {
         return this.recoverForm.controls;
+    }
+
+    get passwordMatchError() {
+        return (
+            this.recoverForm.getError('mismatch') &&
+            this.recoverForm.get('confirmPassword')?.touched
+        );
     }
 
     onSubmit() {
@@ -34,11 +46,14 @@ export class RecoverPasswordComponent {
             return;
         }
 
-        const username: string = this.formControls['username'].value;
+        const password: string = this.formControls['password'].value;
 
         setTimeout(() => {
             this.isSubmitted = false;
-            this.wasRecoverSended = true;
         }, 2000);
+    }
+
+    showHidePassword() {
+        this.displayPassword = !this.displayPassword;
     }
 }
