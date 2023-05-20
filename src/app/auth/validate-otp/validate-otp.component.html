@@ -1,0 +1,50 @@
+<div
+    class="surface-card w-screen sm:w-full h-screen sm:h-auto p-5 sm:p-6 fadein"
+>
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        <app-form-header
+            imageUrl="/assets/images/undraw_validate_otp.svg"
+            imageStyleClass="w-8"
+            [header]="authRoutesNames.VALIDATE_OTP.label"
+            subHeader="We sent you a code. Insert the code to confirm your request."
+        ></app-form-header>
+
+        <div class="field text-center mb-5">
+            <input
+                type="tel"
+                formControlName="otp"
+                id="otp"
+                placeholder="_ _ _ _ _ _"
+                minlength="6"
+                maxlength="6"
+                pInputText
+                class="input-otp text-3xl text-center p-2 w-6"
+            />
+        </div>
+
+        <div class="text-center text-600 text-xl">
+            Did you receive the code?
+
+            <button
+                pButton
+                label="Send Another One{{
+                    resendCounter ? ' (' + resendCounter + 's)' : ''
+                }}"
+                class="block p-button-text text-xl mt-2 mx-auto"
+                [loading]="isResending"
+                [disabled]="resendCounter"
+                (click)="sendAnotherCode()"
+            ></button>
+        </div>
+
+        <button
+            pButton
+            label="Validate Code"
+            iconPos="right"
+            icon="pi {{ otpForm.invalid ? '' : 'pi-chevron-right' }}"
+            class="w-full mt-6"
+            [loading]="isSubmitted"
+            [disabled]="otpForm.invalid"
+        ></button>
+    </form>
+</div>
