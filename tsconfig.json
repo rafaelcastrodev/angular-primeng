@@ -7,7 +7,8 @@
             "@core/*": ["app/_core/*"],
             "@env": ["environments/environment"],
             "@main/*": ["app/main/*"],
-            "@shared/*": ["app/shared/*"]
+            "@shared/*": ["app/shared/*"],
+            "@primeng": ["app/shared/components/primeng/_index"]
         },
         "outDir": "./dist/out-tsc",
         "forceConsistentCasingInFileNames": true,

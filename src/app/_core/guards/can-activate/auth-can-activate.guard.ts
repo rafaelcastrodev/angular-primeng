@@ -12,7 +12,7 @@ import { appRoutesNames } from '@app/app-routes-names';
 import { AuthService } from '@app/auth/shared/services/auth.service';
 
 export const AuthGuard = (next: ActivatedRouteSnapshot) => {
-    return inject(AuthService)
+    return true; /*inject(AuthService)
         .isAuthenticated()
         .pipe(
             map((isAuthenticated) =>
@@ -23,5 +23,5 @@ export const AuthGuard = (next: ActivatedRouteSnapshot) => {
                           appRoutesNames.AUTH.url,
                       ])
             )
-        );
+        );*/
 };
