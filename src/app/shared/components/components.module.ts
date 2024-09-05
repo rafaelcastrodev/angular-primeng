@@ -7,29 +7,24 @@ import * as components from './_index-components';
 import * as primeblocks from './primeblocks/_index-primeblocks';
 import { PrimengModule } from './primeng/primeng.module';
 
-import { DialogModule } from 'primeng/dialog';
 import { PipesModule } from '../pipes/pipes.module';
 import { AppSakaiLayoutModule } from './sakai/app.layout.module';
-// import { PrimeblocksModule } from './primeblocks/primeblocks.module';
 
 @NgModule({
     declarations: [components.components, primeblocks.primeblocks_components],
     imports: [
         CommonModule,
         FormsModule,
-        DialogModule,
         PrimengModule,
         RouterModule,
         PipesModule,
         AppSakaiLayoutModule,
-        // PrimeblocksModule,
     ],
     exports: [
         components.components,
         primeblocks.primeblocks_components,
         PrimengModule,
         AppSakaiLayoutModule,
-        // PrimeblocksModule,
     ],
 })
 export class ComponentsModule {}

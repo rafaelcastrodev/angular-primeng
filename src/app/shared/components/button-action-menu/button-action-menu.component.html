@@ -1,0 +1,19 @@
+<button
+    pButton
+    type="button"
+    icon="pi pi-ellipsis-v"
+    class="p-button-rounded p-button-text p-button-plain"
+    (click)="menu.toggle($event)"
+></button>
+<p-menu #menu appendTo="body" [popup]="true" [model]="options">
+    <ng-template pTemplate="item" let-item>
+        <a
+            pRipple
+            class="flex align-items-center p-menuitem-link"
+            (click)="onTakeAction(item)"
+        >
+            <span [class]="item.icon"></span>
+            <span class="ml-2">{{ item.label }}</span>
+        </a>
+    </ng-template>
+</p-menu>

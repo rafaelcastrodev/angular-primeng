@@ -21,6 +21,18 @@ const mainRoutes: Routes = [
                         (m) => m.DashboardModule
                     ),
             },
+            {
+                path: 'demo',
+                loadChildren: () =>
+                    import('./demo/demo.module').then((m) => m.DemoModule),
+            },
+            {
+                path: 'demo/:id',
+                loadChildren: () =>
+                    import('./demo-detail/demo-detail.module').then(
+                        (m) => m.DemoDetailModule
+                    ),
+            },
         ],
     },
 ];
