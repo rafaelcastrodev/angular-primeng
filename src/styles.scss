@@ -12,6 +12,27 @@ $gutter: 1rem; //for primeflex grid system
 $xm: 480px;
 $xxm: 380px;
 
+.auth-box {
+    border-radius: 56px !important;
+    position: relative;
+    max-width: 35rem;
+    &::after {
+        background: linear-gradient(
+            180deg,
+            var(--primary-color) 10%,
+            rgba(33, 150, 243, 0) 60%
+        );
+        border-radius: 56px !important;
+        content: '';
+        height: 100%;
+        left: -0.3rem;
+        position: absolute;
+        top: -0.3rem;
+        width: calc(100% + 0.6rem);
+        z-index: -1;
+    }
+}
+
 .field .p-input-icon-right,
 .field .p-input-icon-left,
 p-password.w-full .p-component {
@@ -32,6 +53,9 @@ img {
 }
 
 .min-w {
+    &-xs {
+        min-width: 320px !important;
+    }
     &-xxm {
         min-width: $xxm !important;
     }
@@ -70,5 +94,20 @@ img {
     }
     &-xl {
         max-width: $xl !important;
+    }
+}
+
+.mr {
+    &-9 {
+        margin-right: 6rem !important;
+    }
+    &-10 {
+        margin-right: 7rem !important;
+    }
+}
+
+.w {
+    &-35rem {
+        width: 35rem;
     }
 }

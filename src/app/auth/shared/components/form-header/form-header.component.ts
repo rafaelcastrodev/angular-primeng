@@ -10,6 +10,6 @@ import { Component, Input } from '@angular/core';
 export class FormHeaderComponent {
     @Input({ required: true }) imageUrl!: string;
     @Input() imageStyleClass!: string;
-    @Input({ required: true }) header!: string | undefined;
+    @Input() header!: string | undefined;
     @Input() subHeader!: string;
 }

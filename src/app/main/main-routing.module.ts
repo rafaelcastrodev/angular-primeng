@@ -22,6 +22,11 @@ const mainRoutes: Routes = [
                     ),
             },
             {
+                path: mainRoutesNames.USERS.url,
+                loadChildren: () =>
+                    import('./users/users.module').then((m) => m.UsersModule),
+            },
+            {
                 path: 'demo',
                 loadChildren: () =>
                     import('./demo/demo.module').then((m) => m.DemoModule),
