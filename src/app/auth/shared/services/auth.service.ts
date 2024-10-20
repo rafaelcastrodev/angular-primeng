@@ -33,10 +33,10 @@ export class AuthService {
     confirmSignOut() {
         DialogMessage.confirmDialog(
             'info',
-            'Sair da Aplicação',
-            `Tem certeza que deseja <strong>sair</strong> da aplicação?`,
-            'Sair',
-            'Ficar',
+            'Leave Application',
+            `Are you sure you want to <strong>leave</strong> the application?`,
+            'Leave',
+            'Stay',
             () => this.signOut()
         );
     }

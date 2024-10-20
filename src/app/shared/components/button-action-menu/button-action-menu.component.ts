@@ -20,12 +20,12 @@ export class ButtonActionMenuComponent {
     @Input() options: MenuItem[] = [
         {
             id: 'update',
-            label: 'Editar',
+            label: 'Edit',
             icon: PrimeIcons.PENCIL,
         },
         {
             id: 'delete',
-            label: 'Remover',
+            label: 'Remove',
             icon: PrimeIcons.TRASH,
         },
     ];
