@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkangular_primeng=self.webpackChunkangular_primeng||[]).push([[76],{4842:(u,e,r)=>{r.d(e,{N:()=>i});var t=r(3953);let i=(()=>{class a{transform(n){return n.invalid&&n.dirty}static#a=this.\u0275fac=function(s){return new(s||a)};static#n=this.\u0275pipe=t.EJ8({name:"formControlInvalid",type:a,pure:!1})}return a})()}}]);
