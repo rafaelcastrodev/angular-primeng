@@ -40,7 +40,8 @@ export class MenuService {
                 label: mainRoutesNames.HOME.label,
                 items: [
                     {
-                        allowed_roles: mainRoutesNames.DASHBOARD['allowed_roles'],
+                        allowed_roles:
+                            mainRoutesNames.DASHBOARD['allowed_roles'],
                         label: mainRoutesNames.DASHBOARD.label,
                         icon: mainRoutesNames.DASHBOARD.icon,
                         routerLink: [`${mainRoutesNames.DASHBOARD.url}`],

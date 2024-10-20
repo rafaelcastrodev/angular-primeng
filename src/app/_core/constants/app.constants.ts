@@ -1,5 +1,5 @@
 const APP_PREFIX: string = 'ANGPNG';
-const YES_NO_OPTIONS: Object[] = [
+const YES_NO_OPTIONS: object[] = [
     { label: 'No', value: false },
     { label: 'Yes', value: true },
 ];

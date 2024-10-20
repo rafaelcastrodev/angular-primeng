@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**MODELS */
@@ -15,8 +21,10 @@ export class SearchbarComponent {
     @Input() styleClass: string = '';
     @Input() hasFilterModal: boolean = false;
     @Input() filters!: PaginatedResourceInterface | undefined;
-    @Output() onSearch: EventEmitter<PaginatedResourceInterface> = new EventEmitter();
-    @Output() clickFilterButton: EventEmitter<PaginatedResourceInterface> = new EventEmitter();
+    @Output() onSearch: EventEmitter<PaginatedResourceInterface> =
+        new EventEmitter();
+    @Output() clickFilterButton: EventEmitter<PaginatedResourceInterface> =
+        new EventEmitter();
     searchForm!: FormGroup;
 
     constructor(private _formBuilder: FormBuilder) {

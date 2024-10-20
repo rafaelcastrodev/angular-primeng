@@ -19,8 +19,24 @@ import { FormFooterComponent } from './shared/components/form-footer/form-footer
 import { ValidateOtpComponent } from './validate-otp/validate-otp.component';
 
 @NgModule({
-    declarations: [AuthComponent, SigninComponent, SignupComponent, RecoverPasswordComponent, ForgotPasswordComponent, ValidateOtpComponent],
+    declarations: [
+        AuthComponent,
+        SigninComponent,
+        SignupComponent,
+        RecoverPasswordComponent,
+        ForgotPasswordComponent,
+        ValidateOtpComponent,
+    ],
     exports: [],
-    imports: [RouterModule, CommonModule, AUTH_ROUTES, ReactiveFormsModule, FormsModule, FormFooterComponent, FormHeaderComponent, SharedModule],
+    imports: [
+        RouterModule,
+        CommonModule,
+        AUTH_ROUTES,
+        ReactiveFormsModule,
+        FormsModule,
+        FormFooterComponent,
+        FormHeaderComponent,
+        SharedModule,
+    ],
 })
 export class AuthModule {}

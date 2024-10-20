@@ -19,12 +19,16 @@ const mainRoutes: Routes = [
             },
             {
                 path: mainRoutesNames.DASHBOARD.url,
-                loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+                loadChildren: () =>
+                    import('./dashboard/dashboard.module').then(
+                        (m) => m.DashboardModule
+                    ),
                 canActivate: [RoleCanActivateGuard],
             },
             {
                 path: mainRoutesNames.USERS.url,
-                loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
+                loadChildren: () =>
+                    import('./users/users.module').then((m) => m.UsersModule),
                 canActivate: [RoleCanActivateGuard],
             },
         ],

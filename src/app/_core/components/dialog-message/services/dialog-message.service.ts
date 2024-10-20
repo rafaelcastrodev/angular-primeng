@@ -1,7 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 
 /**MODELS */
-import { convertSeverityToButton, DialogMessageOptionsInterface, DialogSeverityModel } from './../models/dialog-message-options.interface';
+import {
+    convertSeverityToButton,
+    DialogMessageOptionsInterface,
+    DialogSeverityModel,
+} from './../models/dialog-message-options.interface';
 import { SeverityModel } from '@core/models/severity.model';
 
 @Injectable({
@@ -9,7 +13,8 @@ import { SeverityModel } from '@core/models/severity.model';
 })
 export class DialogMessage {
     private static _dialogDisplaySignal = signal(false);
-    private static _optionsSignal = signal<DialogMessageOptionsInterface | null>(null);
+    private static _optionsSignal =
+        signal<DialogMessageOptionsInterface | null>(null);
 
     get dialogDisplay() {
         return DialogMessage._dialogDisplaySignal.asReadonly();
@@ -61,11 +66,14 @@ export class DialogMessage {
                     label: btnCancelLabel,
                     text: true,
                     color: 'secondary',
-                    handlerFn: () => (btnCancelCallback ? btnCancelCallback() : () => {}),
+                    handlerFn: () =>
+                        btnCancelCallback ? btnCancelCallback() : () => {},
                 },
                 {
                     label: btnConfirmLabel,
-                    color: convertSeverityToButton(severity) as DialogSeverityModel,
+                    color: convertSeverityToButton(
+                        severity
+                    ) as DialogSeverityModel,
                     handlerFn: () => btnConfirmCallback(),
                 },
             ],
@@ -92,7 +100,11 @@ export class DialogMessage {
         DialogMessage.setDialogBySeverity('help', header, message);
     }
 
-    private static setDialogBySeverity(severity: SeverityModel, header: string, content: string) {
+    private static setDialogBySeverity(
+        severity: SeverityModel,
+        header: string,
+        content: string
+    ) {
         DialogMessage.present({
             severity: severity,
             header: header,

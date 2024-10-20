@@ -1,15 +1,31 @@
 <div class="layout-topbar">
-    <a class="layout-topbar-logo w-auto mr-10" [routerLink]="['/main']" title="Logo">
-        <img src="/assets/images/undraw_logo.svg" alt="Logo " class="h-4rem m-0" />
+    <a
+        class="layout-topbar-logo w-auto mr-10"
+        [routerLink]="['/main']"
+        title="Logo"
+    >
+        <img
+            src="/assets/images/undraw_logo.svg"
+            alt="Logo "
+            class="h-4rem m-0"
+        />
     </a>
 
     <!-- MENU TOGGLE -->
-    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+    <button
+        #menubutton
+        class="p-link layout-menu-button layout-topbar-button"
+        (click)="layoutService.onMenuToggle()"
+    >
         <i class="pi pi-bars"></i>
     </button>
 
     <!-- TOPBAR RIGHT SIDE -->
-    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+    <button
+        #topbarmenubutton
+        class="p-link layout-topbar-menu-button layout-topbar-button"
+        (click)="layoutService.showProfileSidebar()"
+    >
         <i class="pi pi-ellipsis-v"></i>
     </button>
 
@@ -17,7 +33,8 @@
         #topbarmenu
         class="layout-topbar-menu"
         [ngClass]="{
-            'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible,
+            'layout-topbar-menu-mobile-active':
+                layoutService.state.profileSidebarVisible,
         }"
     >
         @for (item of topbarMenuItems; track item) {

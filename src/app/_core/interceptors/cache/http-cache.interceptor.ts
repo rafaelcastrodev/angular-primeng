@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+    HttpEvent,
+    HttpInterceptor,
+    HttpHandler,
+    HttpRequest,
+    HttpResponse,
+} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CacheService } from './http-cache.service';
@@ -8,7 +14,10 @@ import { CacheService } from './http-cache.service';
 export class CacheInterceptor implements HttpInterceptor {
     constructor(private _cacheService: CacheService) {}
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(
+        req: HttpRequest<any>,
+        next: HttpHandler
+    ): Observable<HttpEvent<any>> {
         if (req.method !== 'GET') {
             this._cacheService.delete(req.url);
 
@@ -22,7 +31,10 @@ export class CacheInterceptor implements HttpInterceptor {
         }
 
         // Don't cache if explicitly told not to
-        if (req.headers.get('X-No-Cache')?.toLowerCase() === 'true' || req.params.get('nocache')?.toLowerCase() === 'true') {
+        if (
+            req.headers.get('X-No-Cache')?.toLowerCase() === 'true' ||
+            req.params.get('nocache')?.toLowerCase() === 'true'
+        ) {
             return next.handle(req);
         }
 

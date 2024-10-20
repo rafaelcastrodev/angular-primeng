@@ -1,6 +1,9 @@
 <p-dialog
     styleClass="max-w-lg dialog-message-border 
-    {{ 'dialog-message-border-severity-' + dialogMessageService.options()?.severity }}
+    {{
+        'dialog-message-border-severity-' +
+            dialogMessageService.options()?.severity
+    }}
     {{ dialogMessageService.options()?.styleClass || '' }}"
     [modal]="true"
     [visible]="dialogMessageService.dialogDisplay()"
@@ -14,11 +17,19 @@
 >
     <ng-template pTemplate="closeicon">
         <div class="relative z-1">
-            <p-button icon="pi pi-times" severity="secondary" [rounded]="true" [text]="true" (click)="dismissDialog()" />
+            <p-button
+                icon="pi pi-times"
+                severity="secondary"
+                [rounded]="true"
+                [text]="true"
+                (click)="dismissDialog()"
+            />
         </div>
     </ng-template>
     <ng-template pTemplate="header">
-        <div class="inline-flex align-items-center justify-content-center gap-2">
+        <div
+            class="inline-flex align-items-center justify-content-center gap-2"
+        >
             <h5 class="font-bold white-space-nowrap">
                 {{ dialogMessageService.options()?.header || 'Aviso' }}
             </h5>
@@ -27,10 +38,15 @@
 
     <ng-template pTemplate="content">
         <div class="flex">
-            <ng-container *ngIf="dialogMessageService.options()?.icon !== 'no-icon'">
+            <ng-container
+                *ngIf="dialogMessageService.options()?.icon !== 'no-icon'"
+            >
                 <i [ngClass]="iconClass" class="text-4xl mr-3"></i>
             </ng-container>
-            <div [innerHTML]="dialogMessageService.options()?.content" class="text-lg line-height-3"></div>
+            <div
+                [innerHTML]="dialogMessageService.options()?.content"
+                class="text-lg line-height-3"
+            ></div>
         </div>
     </ng-template>
     <!-- CONTENT -->
@@ -40,12 +56,17 @@
         @if (!dialogMessageService.options()?.buttons) {
             <button
                 pButton
-                class="p-button-{{ dialogMessageService.options()?.severity | severityToButton }}"
+                class="p-button-{{
+                    dialogMessageService.options()?.severity | severityToButton
+                }}"
                 label="Fechar"
                 (click)="dismissDialog()"
             ></button>
         } @else {
-            @for (button of dialogMessageService.options()?.buttons; track $index) {
+            @for (
+                button of dialogMessageService.options()?.buttons;
+                track $index
+            ) {
                 <button
                     pButton
                     class="{{ button.styleClass }} p-button-{{ button.color }}"

@@ -31,8 +31,13 @@ export class AuthService {
     }
 
     confirmSignOut() {
-        DialogMessage.confirmDialog('info', 'Sair da Aplicação', `Tem certeza que deseja <strong>sair</strong> da aplicação?`, 'Sair', 'Ficar', () =>
-            this.signOut()
+        DialogMessage.confirmDialog(
+            'info',
+            'Sair da Aplicação',
+            `Tem certeza que deseja <strong>sair</strong> da aplicação?`,
+            'Sair',
+            'Ficar',
+            () => this.signOut()
         );
     }
 

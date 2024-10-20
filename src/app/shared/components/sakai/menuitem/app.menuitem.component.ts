@@ -1,6 +1,18 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+    Component,
+    HostBinding,
+    Input,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
 
 /**MODELS */
 import { MenuItem } from 'primeng/api';
@@ -16,11 +28,18 @@ import { AuthService } from '@app/auth/shared/services/auth.service';
     selector: '[app-menuitem]',
     template: `
         <ng-container>
-            <div *ngIf="root && hasPermission(item) && item.visible !== false" class="layout-menuitem-root-text">
+            <div
+                *ngIf="root && hasPermission(item) && item.visible !== false"
+                class="layout-menuitem-root-text"
+            >
                 {{ item.label }}
             </div>
             <a
-                *ngIf="hasPermission(item) && (!item.routerLink || item.items) && item.visible !== false"
+                *ngIf="
+                    hasPermission(item) &&
+                    (!item.routerLink || item.items) &&
+                    item.visible !== false
+                "
                 [attr.href]="item.url"
                 (click)="itemClick($event)"
                 [ngClass]="item.class"
@@ -30,11 +49,19 @@ import { AuthService } from '@app/auth/shared/services/auth.service';
             >
                 <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
                 <span class="layout-menuitem-text">{{ item.label }}</span>
-                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+                <i
+                    class="pi pi-fw pi-angle-down layout-submenu-toggler"
+                    *ngIf="item.items"
+                ></i>
             </a>
 
             <a
-                *ngIf="hasPermission(item) && item.routerLink && !item.items && item.visible !== false"
+                *ngIf="
+                    hasPermission(item) &&
+                    item.routerLink &&
+                    !item.items &&
+                    item.visible !== false
+                "
                 (click)="itemClick($event)"
                 [ngClass]="item.class"
                 [routerLink]="item.routerLink"
@@ -60,13 +87,30 @@ import { AuthService } from '@app/auth/shared/services/auth.service';
             >
                 <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
                 <span class="layout-menuitem-text">{{ item.label }}</span>
-                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+                <i
+                    class="pi pi-fw pi-angle-down layout-submenu-toggler"
+                    *ngIf="item.items"
+                ></i>
             </a>
 
-            <ul *ngIf="item.items && item.visible !== false" [@children]="submenuAnimation">
-                <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
+            <ul
+                *ngIf="item.items && item.visible !== false"
+                [@children]="submenuAnimation"
+            >
+                <ng-template
+                    ngFor
+                    let-child
+                    let-i="index"
+                    [ngForOf]="item.items"
+                >
                     <ng-container *ngIf="hasPermission(child)">
-                        <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                        <li
+                            app-menuitem
+                            [item]="child"
+                            [index]="i"
+                            [parentKey]="key"
+                            [class]="child.badgeClass"
+                        ></li>
                     </ng-container>
                 </ng-template>
             </ul>
@@ -86,7 +130,10 @@ import { AuthService } from '@app/auth/shared/services/auth.service';
                     height: '*',
                 })
             ),
-            transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
+            transition(
+                'collapsed <=> expanded',
+                animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')
+            ),
         ]),
     ],
 })
@@ -106,27 +153,40 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         private _menuService: MenuService,
         private _authService: AuthService
     ) {
-        this.menuSourceSubscription = this._menuService.menuSource$.subscribe((value: any) => {
-            Promise.resolve(null).then(() => {
-                if (value.routeEvent) {
-                    this.active = value.key === this.key || value.key.startsWith(this.key + '-') ? true : false;
-                } else {
-                    if (value.key !== this.key && !value.key.startsWith(this.key + '-')) {
-                        this.active = false;
+        this.menuSourceSubscription = this._menuService.menuSource$.subscribe(
+            (value: any) => {
+                Promise.resolve(null).then(() => {
+                    if (value.routeEvent) {
+                        this.active =
+                            value.key === this.key ||
+                            value.key.startsWith(this.key + '-')
+                                ? true
+                                : false;
+                    } else {
+                        if (
+                            value.key !== this.key &&
+                            !value.key.startsWith(this.key + '-')
+                        ) {
+                            this.active = false;
+                        }
                     }
+                });
+            }
+        );
+
+        this.menuResetSubscription = this._menuService.resetSource$.subscribe(
+            () => {
+                this.active = false;
+            }
+        );
+
+        this.router.events
+            .pipe(filter((event) => event instanceof NavigationEnd))
+            .subscribe((params) => {
+                if (this.item.routerLink) {
+                    this.updateActiveStateFromRoute();
                 }
             });
-        });
-
-        this.menuResetSubscription = this._menuService.resetSource$.subscribe(() => {
-            this.active = false;
-        });
-
-        this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((params) => {
-            if (this.item.routerLink) {
-                this.updateActiveStateFromRoute();
-            }
-        });
     }
 
     get submenuAnimation() {
@@ -140,7 +200,9 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         // this.currentAuthUser = this._authService.getCurrentAuthUser();
-        this.key = this.parentKey ? this.parentKey + '-' + this.index : String(this.index);
+        this.key = this.parentKey
+            ? this.parentKey + '-' + this.index
+            : String(this.index);
 
         if (this.item.routerLink) {
             this.updateActiveStateFromRoute();
@@ -159,12 +221,14 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     hasPermission(routeConfig: MenuItem): boolean {
         const isPublicRoute = routeConfig['allowed_roles'].length === 0;
-        const isRoleAllowed = routeConfig['allowed_roles'].includes(this.currentAuthUser?.role!.slug);
+        const isRoleAllowed = routeConfig['allowed_roles'].includes(
+            this.currentAuthUser?.role!.slug
+        );
         return isPublicRoute || isRoleAllowed;
     }
 
     updateActiveStateFromRoute() {
-        let activeRoute = this.router.isActive(this.item.routerLink[0], {
+        const activeRoute = this.router.isActive(this.item.routerLink[0], {
             paths: 'exact',
             queryParams: 'ignored',
             matrixParams: 'ignored',

@@ -29,7 +29,8 @@ export class ButtonActionMenuComponent {
             icon: PrimeIcons.TRASH,
         },
     ];
-    @Output() actionClick: EventEmitter<ButtonActionInterface> = new EventEmitter();
+    @Output() actionClick: EventEmitter<ButtonActionInterface> =
+        new EventEmitter();
 
     onTakeAction(item: MenuItem) {
         this.actionClick.emit({

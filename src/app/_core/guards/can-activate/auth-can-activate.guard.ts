@@ -1,5 +1,9 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, createUrlTreeFromSnapshot, CanActivateFn } from '@angular/router';
+import {
+    ActivatedRouteSnapshot,
+    createUrlTreeFromSnapshot,
+    CanActivateFn,
+} from '@angular/router';
 import { AuthService } from '@app/auth/shared/services/auth.service';
 import { appRoutesNames } from '@app/app-routes-names';
 import { Observable, of } from 'rxjs';

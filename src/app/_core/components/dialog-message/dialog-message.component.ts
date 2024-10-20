@@ -47,14 +47,20 @@ export class DialogMessageComponent {
     }
 
     handleButtonClick(button: DialogMessageButtonInterface) {
-        if (button.handlerFn && !this.dialogMessageService.options()?.byPassHandlers) {
+        if (
+            button.handlerFn &&
+            !this.dialogMessageService.options()?.byPassHandlers
+        ) {
             button.handlerFn(button.payload);
         }
         if (button.keepDialogOpen) {
             return;
         }
 
-        if (!this.dialogMessageService.options()?.byPassHandlers || this.dialogMessageService.options()?.byPassHandlers === 'dismiss') {
+        if (
+            !this.dialogMessageService.options()?.byPassHandlers ||
+            this.dialogMessageService.options()?.byPassHandlers === 'dismiss'
+        ) {
             DialogMessage.dismiss();
         }
     }

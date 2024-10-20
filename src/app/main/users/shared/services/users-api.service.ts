@@ -16,7 +16,9 @@ export class UsersAPIService extends BaseResourcePromiseService<UserInterface> {
     }
 
     override getAll(pagination?: PaginatedResourceInterface) {
-        const pag: PaginatedResourceInterface = pagination ? pagination : { sortby: 'name', page: 0, page_size: 10 };
+        const pag: PaginatedResourceInterface = pagination
+            ? pagination
+            : { sortby: 'name', page: 0, page_size: 10 };
 
         return super.getAll(pag);
     }

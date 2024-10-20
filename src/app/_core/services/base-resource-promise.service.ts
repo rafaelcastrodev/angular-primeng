@@ -7,7 +7,9 @@ import { environment as env } from '@env';
 import { BaseResourceInterface } from '@core/models/base-resource.interface';
 import { PaginatedResourceInterface } from '@core/models/paginated-resource.interface';
 
-export abstract class BaseResourcePromiseService<T extends BaseResourceInterface> {
+export abstract class BaseResourcePromiseService<
+    T extends BaseResourceInterface,
+> {
     private _baseUrl: string;
     _http: HttpClient = inject(HttpClient);
 
@@ -19,13 +21,21 @@ export abstract class BaseResourcePromiseService<T extends BaseResourceInterface
         const url: string = this._baseUrl;
         const queryParams = this.getRequestParams(pagination);
 
-        return lastValueFrom(this._http.get(url, { params: queryParams }).pipe(map(this.dataToResources.bind(this))));
+        return lastValueFrom(
+            this._http
+                .get(url, { params: queryParams })
+                .pipe(map(this.dataToResources.bind(this)))
+        );
     }
 
     getById(resourceId: number | string): Promise<T> {
         const url: string = this._baseUrl;
 
-        return lastValueFrom(this._http.get(`${url}/${resourceId}`).pipe(map(this.dataToResource.bind(this))));
+        return lastValueFrom(
+            this._http
+                .get(`${url}/${resourceId}`)
+                .pipe(map(this.dataToResource.bind(this)))
+        );
     }
 
     createOrUpdate(resource: T): Promise<T | any> {
@@ -44,13 +54,21 @@ export abstract class BaseResourcePromiseService<T extends BaseResourceInterface
     create(resource: T): Promise<T | any> {
         const url: string = this._baseUrl;
 
-        return lastValueFrom(this._http.post(url, resource).pipe(map(this.dataToResource.bind(this))));
+        return lastValueFrom(
+            this._http
+                .post(url, resource)
+                .pipe(map(this.dataToResource.bind(this)))
+        );
     }
 
     update(resource: T): Promise<T | any> {
         const url: string = this._baseUrl;
 
-        return lastValueFrom(this._http.put(`${url}/${resource.id}`, resource).pipe(map(this.dataToResource.bind(this))));
+        return lastValueFrom(
+            this._http
+                .put(`${url}/${resource.id}`, resource)
+                .pipe(map(this.dataToResource.bind(this)))
+        );
     }
 
     private getRequestParams(pag: PaginatedResourceInterface): HttpParams {
