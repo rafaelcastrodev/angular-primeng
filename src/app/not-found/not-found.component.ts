@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     template: `
         <div style="display: grid; place-items:center; ">
             <img
-                src="/assets/images/undraw_404.svg"
+                src="./assets/images/undraw_404.svg"
                 style="width: 80%; max-width: 400px;"
             />
             <br /><br />

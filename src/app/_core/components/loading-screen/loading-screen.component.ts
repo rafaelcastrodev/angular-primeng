@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
         <div class="absolute z-1 text-center">
             <img
                 class="w-5 border-circle"
-                src="/assets/images/undraw_logo.svg"
+                src="./assets/images/undraw_logo.svg"
                 alt="Logo"
             />
         </div>
