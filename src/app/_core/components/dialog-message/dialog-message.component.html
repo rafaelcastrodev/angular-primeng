@@ -1,0 +1,60 @@
+<p-dialog
+    styleClass="max-w-lg dialog-message-border 
+    {{ 'dialog-message-border-severity-' + dialogMessageService.options()?.severity }}
+    {{ dialogMessageService.options()?.styleClass || '' }}"
+    [modal]="true"
+    [visible]="dialogMessageService.dialogDisplay()"
+    [breakpoints]="{ '575px': '90vw' }"
+    [draggable]="false"
+    [resizable]="false"
+    [closable]="dialogMessageService.options()?.closable ?? true"
+    [closeOnEscape]="dialogMessageService.options()?.closeOnEscape ?? true"
+    [header]="dialogMessageService.options()?.header || ''"
+    [maximizable]="dialogMessageService.options()?.maximizable ?? false"
+>
+    <ng-template pTemplate="closeicon">
+        <div class="relative z-1">
+            <p-button icon="pi pi-times" severity="secondary" [rounded]="true" [text]="true" (click)="dismissDialog()" />
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2">
+            <h5 class="font-bold white-space-nowrap">
+                {{ dialogMessageService.options()?.header || 'Aviso' }}
+            </h5>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <div class="flex">
+            <ng-container *ngIf="dialogMessageService.options()?.icon !== 'no-icon'">
+                <i [ngClass]="iconClass" class="text-4xl mr-3"></i>
+            </ng-container>
+            <div [innerHTML]="dialogMessageService.options()?.content" class="text-lg line-height-3"></div>
+        </div>
+    </ng-template>
+    <!-- CONTENT -->
+
+    <!-- FOOTER -->
+    <ng-template pTemplate="footer">
+        @if (!dialogMessageService.options()?.buttons) {
+            <button
+                pButton
+                class="p-button-{{ dialogMessageService.options()?.severity | severityToButton }}"
+                label="Fechar"
+                (click)="dismissDialog()"
+            ></button>
+        } @else {
+            @for (button of dialogMessageService.options()?.buttons; track $index) {
+                <button
+                    pButton
+                    class="{{ button.styleClass }} p-button-{{ button.color }}"
+                    [icon]="button.icon ? button.icon : ''"
+                    [label]="button.label ? button.label : ''"
+                    [text]="button.text"
+                    (click)="handleButtonClick(button)"
+                ></button>
+            }
+        }
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,45 @@
+<form
+    [formGroup]="searchForm"
+    (ngSubmit)="submitSearch()"
+    class="flex align-items-center gap-2 flex-column sm:flex-row"
+>
+    <span class="p-input-icon-left p-input-icon-right w-full overflow-hidden">
+        <i class="pi pi-search d-table"></i>
+        <input
+            #filter
+            pInputText
+            type="text"
+            placeholder="Type something here"
+            class="w-full"
+            formControlName="searchTerm"
+        />
+        @if (formControls['searchTerm'].value) {
+            <i
+                class="pi pi-times p-3 cursor-pointer text-center w-2rem h-full"
+                style="top: 6px"
+                title="Limpar"
+                (click)="clearSearch()"
+            ></i>
+        }
+    </span>
+
+    <button
+        pButton
+        type="submit"
+        label="Search"
+        class="p-button-secondary w-full sm:w-8rem"
+        [ngClass]="{ 'p-button-outlined': !formControls['searchTerm'].value }"
+        [disabled]="!formControls['searchTerm'].value"
+    ></button>
+
+    @if (hasFilterModal) {
+        <button
+            pButton
+            label="Filters"
+            type="button"
+            icon="pi pi-filter"
+            class="w-full sm:w-9rem"
+            (click)="onClickFilterButton()"
+        ></button>
+    }
+</form>

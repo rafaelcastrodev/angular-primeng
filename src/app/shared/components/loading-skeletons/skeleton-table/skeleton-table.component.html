@@ -1,0 +1,36 @@
+<p-table [value]="mockItemsRows" styleClass="{{ styleClass }}">
+    <ng-template pTemplate="header">
+        <tr>
+            @for (item of mockItemsColumns; track item; let index = $index) {
+                <th
+                    class="uppercase {{ commonStyleClass }} {{
+                        columnStyleClass[index]
+                    }}"
+                >
+                    @if (columns) {
+                        {{ item }}&nbsp;&nbsp;<i class="{{ columnIcon }}"></i>
+                    } @else {
+                        <p-skeleton
+                            styleClass="{{
+                                animated ? '' : 'p-skeleton-animation-none'
+                            }}"
+                        />
+                    }
+                </th>
+            }
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <tr>
+            @for (item of mockItemsColumns; track item) {
+                <td>
+                    <p-skeleton
+                        styleClass="{{
+                            animated ? '' : 'p-skeleton-animation-none'
+                        }}"
+                    />
+                </td>
+            }
+        </tr>
+    </ng-template>
+</p-table>

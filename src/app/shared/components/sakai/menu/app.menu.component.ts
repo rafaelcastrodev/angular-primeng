@@ -17,10 +17,10 @@ export class AppMenuComponent implements OnInit {
 
     constructor(
         public layoutService: LayoutService,
-        private menuService: MenuService
+        private _menuService: MenuService
     ) {}
 
     ngOnInit() {
-        this.menuItems = this.menuService.getMenuItems();
+        this.menuItems = this._menuService.getSideMenuItems();
     }
 }

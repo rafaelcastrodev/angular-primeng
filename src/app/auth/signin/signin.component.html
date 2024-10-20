@@ -1,28 +1,12 @@
-<!-- 
-    Full-width small than 576; Center until 992; Left side beyond that
-    class="surface-card w-full p-5 sm:p-6 fadein"
- -->
-<!-- <app-form-header
-    imageUrl="/assets/images/logo_smartcheckup.png"
-    imageStyleClass="w-8"
-></app-form-header> -->
-
-<picture class="flex flex-column align-items-center">
-    <source
-        class="w-6 mx-auto mb-4 min-w-xx"
-        media="(max-width: 576px)"
-        srcset="/assets/images/logo_smartcheckup_h.png"
-    />
-    <img
-        class="w-7 mx-auto mb-4 border-circle p-5 bg-white"
-        src="/assets/images/logo_smartcheckup.png"
-        alt="Logo Smartcheckup"
-    />
-</picture>
 <div class="auth-box surface-card w-screen p-5 pt-6 sm:p-7 fadein">
+    <app-form-header
+        imageUrl="/assets/images/undraw_signin.svg"
+        imageStyleClass="w-5"
+        [header]="authRoutesNames.SIGNIN.label"
+    ></app-form-header>
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <div class="field">
-            <label for="username" class="text-900">Email address</label>
+            <label for="username" class="text-900">Email</label>
             <div class="p-input-icon-left">
                 <i class="pi pi-envelope"></i>
                 <input
@@ -65,7 +49,7 @@
                     class="pi pi-{{
                         displayPassword ? 'eye-slash' : 'eye'
                     }} cursor-pointer"
-                    title="{{ displayPassword ? 'Hide' : 'Show' }} password"
+                    title="{{ displayPassword ? 'Show' : 'Hide' }} password"
                     (click)="showHidePassword()"
                 ></i>
             </div>
@@ -74,44 +58,24 @@
         <div class="block">
             <a
                 class="text-blue-500 cursor-pointer"
-                [routerLink]="['/auth/' + authRoutesNames.FORGOT_PASSWORD.url]"
+                [routerLink]="[
+                    '/' +
+                        appRoutesNames.AUTH.url +
+                        '/' +
+                        authRoutesNames.FORGOT_PASSWORD.url,
+                ]"
                 >Forgot your password?</a
             >
         </div>
 
         <button
             pButton
-            label="Sign In"
+            label="Login"
             iconPos="right"
             icon="pi {{ signInForm.invalid ? '' : 'pi-chevron-right' }}"
             class="w-full mt-5"
             [loading]="isSubmitted"
             [disabled]="signInForm.invalid"
         ></button>
-
-        <!-- ToDo Social Logins -->
-        <!-- <div class="mt-6 flex justify-content-between">
-        <button
-            pButton
-            label="Sign with Google"
-            icon="pi pi-google"
-            class="p-button-secondary w-full"
-        ></button>
-
-        <div class="w-1"></div>
-
-        <button
-            pButton
-            label="Sign with Facebook"
-            icon="pi pi-facebook"
-            class="p-button-secondary w-full"
-        ></button>
-    </div> -->
     </form>
-
-    <!-- <app-form-footer
-        highlighText="Don't have an account?"
-        urlText="Sign Up here"
-        [url]="authRoutesNames.SIGNUP.url"
-    ></app-form-footer> -->
 </div>

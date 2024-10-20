@@ -4,6 +4,9 @@ import { MainComponent } from './main.component';
 /**MODELS */
 import { mainRoutesNames } from './main-routes-names';
 
+/**GUARDS */
+import { RoleCanActivateGuard } from '@core/guards/can-activate/role-can-activate.guard';
+
 const mainRoutes: Routes = [
     {
         path: '',
@@ -16,27 +19,13 @@ const mainRoutes: Routes = [
             },
             {
                 path: mainRoutesNames.DASHBOARD.url,
-                loadChildren: () =>
-                    import('./dashboard/dashboard.module').then(
-                        (m) => m.DashboardModule
-                    ),
+                loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+                canActivate: [RoleCanActivateGuard],
             },
             {
                 path: mainRoutesNames.USERS.url,
-                loadChildren: () =>
-                    import('./users/users.module').then((m) => m.UsersModule),
-            },
-            {
-                path: 'demo',
-                loadChildren: () =>
-                    import('./demo/demo.module').then((m) => m.DemoModule),
-            },
-            {
-                path: 'demo/:id',
-                loadChildren: () =>
-                    import('./demo-detail/demo-detail.module').then(
-                        (m) => m.DemoDetailModule
-                    ),
+                loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
+                canActivate: [RoleCanActivateGuard],
             },
         ],
     },

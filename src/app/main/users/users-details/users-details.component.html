@@ -1,3 +1,119 @@
 <div class="card">
-    <h4 class="">Detalhes Item: {{ '' }}</h4>
+    <div class="mb-4 flex justify-content-between align-items-center">
+        <app-page-header
+            [icon]="mainRoutesNames.USERS.icon!"
+            title="{{ mainRoutesNames.USERS.label }} Registration"
+        />
+    </div>
+
+    <form [formGroup]="itemDetailsForm" (ngSubmit)="onSubmit()" class="p-fluid">
+        <!-- Name Field -->
+        <div class="p-field">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" pInputText formControlName="name" />
+
+            <small
+                *ngIf="formControls['name'] | formControlInvalid"
+                class="p-error"
+            >
+                <ng-container *ngIf="formControls['name'].hasError('required')">
+                    Name is required.
+                </ng-container>
+            </small>
+        </div>
+
+        <!-- Email Field -->
+        <div class="p-field">
+            <label for="email">Email</label>
+            <input
+                id="email"
+                type="email"
+                pInputText
+                formControlName="email"
+                [readOnly]="routeParameterId"
+            />
+            <small
+                *ngIf="formControls['email'] | formControlInvalid"
+                class="p-error"
+            >
+                <ng-container
+                    *ngIf="formControls['email'].hasError('required')"
+                >
+                    Email is required.
+                </ng-container>
+                <ng-container *ngIf="formControls['email'].hasError('email')">
+                    Invalid email format.
+                </ng-container>
+            </small>
+        </div>
+
+        <!-- Password Field -->
+        <div class="p-field">
+            <label for="password">Password</label>
+
+            <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                appendTo="body"
+                promptLabel="Choose a good password"
+                weakLabel="Weak"
+                mediumLabel="Improving"
+                strongLabel="Great"
+            />
+
+            <small
+                *ngIf="formControls['password'] | formControlInvalid"
+                class="p-error"
+            >
+                <ng-container
+                    *ngIf="formControls['password'].hasError('required')"
+                >
+                    Password is required.
+                </ng-container>
+            </small>
+        </div>
+
+        <!-- Role Dropdown -->
+        <div class="p-field">
+            <label for="role_id">Role</label>
+            <p-dropdown
+                id="id"
+                formControlName="role_id"
+                optionLabel="name"
+                optionValue="id"
+                placeholder="Select a role profile"
+                appendTo="body"
+                [options]="roles"
+            ></p-dropdown>
+            <small
+                *ngIf="formControls['role_id'] | formControlInvalid"
+                class="p-error"
+            >
+                <ng-container
+                    *ngIf="formControls['role_id'].hasError('required')"
+                >
+                    Role is required.
+                </ng-container>
+            </small>
+        </div>
+
+        <!-- Must Reset Password Field (Boolean) -->
+        <div class="p-field p-field-checkbox my-5">
+            <p-checkbox
+                inputId="must_reset_password"
+                formControlName="must_reset_password"
+                binary="true"
+                styleClass="mr-2"
+                class="font-bold"
+                label="Force password change during next login?"
+            ></p-checkbox>
+        </div>
+
+        <app-form-footer-submit
+            styleClass="mt-6 gap-3 flex flex-wrap align-items-center justify-content-center"
+            [isSubmitDisabled]="itemDetailsForm.invalid || !hasUnsavedChanges"
+            [isSubmitLoading]="isSubmitted"
+            (returnClick)="navigateBack()"
+        />
+    </form>
 </div>

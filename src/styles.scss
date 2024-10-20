@@ -6,6 +6,7 @@
 /*Theme*/
 @import 'assets/theme/layout/layout.scss';
 @import 'assets/theme/lara-light-blue.css';
+@import 'assets/fonts/fonts.css';
 
 /*Custom Variables*/
 $gutter: 1rem; //for primeflex grid system
@@ -17,11 +18,7 @@ $xxm: 380px;
     position: relative;
     max-width: 35rem;
     &::after {
-        background: linear-gradient(
-            180deg,
-            var(--primary-color) 10%,
-            rgba(33, 150, 243, 0) 60%
-        );
+        background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 60%);
         border-radius: 56px !important;
         content: '';
         height: 100%;
@@ -39,6 +36,64 @@ p-password.w-full .p-component {
     width: 100% !important;
 }
 
+p-password {
+    .p-inputwrapper.p-input-icon-right .p-icon-wrapper {
+        right: 0.75rem;
+    }
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.p-dialog {
+    width: 75vw;
+}
+
+.dialog-message-border {
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-left-color: var(--primary-color);
+}
+.dialog-message-border-severity {
+    &-success {
+        border-left-color: #22c55e !important;
+    }
+    &-error,
+    &-danger {
+        border-left-color: #ef4444 !important;
+    }
+    &-warning,
+    &-warn {
+        border-left-color: #f59e0b !important;
+    }
+    &-info {
+        border-left-color: #699df3 !important;
+    }
+    &-help {
+        border-left-color: #a855f7 !important;
+    }
+}
+
+.text {
+    &-success {
+        color: #15ad4d !important;
+    }
+    &-error,
+    &-danger {
+        color: #ef4444 !important;
+    }
+    &-warning,
+    &-warn {
+        color: #f59e0b !important;
+    }
+    &-help {
+        color: #a855f7 !important;
+    }
+}
+
 .field {
     small {
         display: inline-block;
@@ -52,7 +107,58 @@ img {
     max-width: 100%;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layout-menu ul a.active-route {
+    font-weight: 600;
+}
+
+.p-skeleton-animation-none:after {
+    animation: none;
+}
+
+.cursor-text {
+    cursor: text !important;
+}
+
+.d-table {
+    display: table !important;
+}
+
+.p-toast {
+    opacity: 0.97;
+}
+
+.status-box,
+.status-box .p-checkbox-box {
+    border-width: 1px;
+    height: 42px;
+    min-width: 42px;
+    width: 42px;
+}
+
+.status-box .p-checkbox-box.p-highlight {
+    border-color: var(--green-600) !important;
+    background: var(--green-600) !important;
+}
+
 .min-w {
+    &-max-content {
+        min-width: max-content;
+    }
+
+    &-1 {
+        width: 8.3333% !important;
+    }
+
+    &-2 {
+        width: 16.6667% !important;
+    }
+
     &-xs {
         min-width: 320px !important;
     }
@@ -106,7 +212,27 @@ img {
     }
 }
 
+.pl {
+    &-25 {
+        padding-left: 0.75rem !important;
+    }
+    &-55 {
+        padding-left: 2.5rem !important;
+    }
+}
+
+.h {
+    &-content {
+        height: fit-content;
+    }
+}
+
 .w {
+    &-fit {
+        &-content {
+            width: fit-content;
+        }
+    }
     &-35rem {
         width: 35rem;
     }

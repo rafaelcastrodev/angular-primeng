@@ -1,0 +1,15 @@
+:host {
+    ::ng-deep {
+        // p-chart,
+        // p-chart > div,
+        // canvas {
+        //     height: 100% !important;
+        // }
+
+        p-chart.type-pie {
+            canvas {
+                max-height: 15rem !important;
+            }
+        }
+    }
+}

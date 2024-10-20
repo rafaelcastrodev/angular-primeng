@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**MODELS */
+import { appRoutesNames } from '@app/app-routes-names';
 import { authRoutesNames } from '../auth-routes-names';
 
 @Component({
@@ -13,6 +14,7 @@ export class ForgotPasswordComponent {
     forgotForm: FormGroup;
     isSubmitted!: boolean;
     wasRecoverSended!: boolean;
+    appRoutesNames = appRoutesNames;
     authRoutesNames = authRoutesNames;
     private formBuilder: FormBuilder = inject(FormBuilder);
 

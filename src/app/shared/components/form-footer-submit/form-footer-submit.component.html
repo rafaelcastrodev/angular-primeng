@@ -1,0 +1,24 @@
+<!-- Return Button -->
+<div class="{{ styleClass }}">
+    <button
+        pButton
+        type="button"
+        label="Voltar"
+        iconPos="left"
+        icon="pi pi-chevron-left"
+        class="p-button-outlined p-button-secondary w-full md:w-20rem"
+        (click)="clickOnReturn()"
+    ></button>
+
+    <!-- Submit Button -->
+    <button
+        pButton
+        label="Salvar"
+        iconPos="right"
+        icon="pi pi-save"
+        class="w-full md:w-20rem"
+        type="submit"
+        [loading]="isSubmitLoading"
+        [disabled]="isSubmitDisabled"
+    ></button>
+</div>

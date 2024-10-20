@@ -1,41 +1,33 @@
 import { MenuItem } from 'primeng/api';
 
 const HOME: MenuItem = {
-    label: 'Início',
-    url: 'início',
+    label: 'Home',
+    url: 'home',
     icon: 'pi pi-fw pi-home',
+    allowed_roles: [],
 };
 const MANAGEMENT: MenuItem = {
-    label: 'Gestão',
-    url: 'gestao',
+    label: 'Management',
+    url: 'management',
     icon: 'pi pi-fw pi-building-columns',
+    allowed_roles: [],
 };
 const DASHBOARD: MenuItem = {
     label: 'Dashboard',
     url: 'dashboard',
     icon: 'pi pi-fw pi-home',
-};
-const REPORTS: MenuItem = {
-    label: 'Relatórios',
-    url: 'relatorios',
-    icon: 'pi pi-fw pi-chart-bar',
+    allowed_roles: [],
 };
 const USERS: MenuItem = {
-    label: 'Usuários',
-    url: 'usuarios',
-    icon: 'pi pi-fw pi-user',
-};
-const DEVICES: MenuItem = {
-    label: 'Dispositivos',
-    url: 'dispositivos',
-    icon: 'pi pi-fw pi-box',
+    label: 'Users',
+    url: 'users',
+    icon: 'pi pi-fw pi-users',
+    allowed_roles: [],
 };
 
 export const mainRoutesNames = {
+    DASHBOARD,
     HOME,
     MANAGEMENT,
-    DASHBOARD,
-    REPORTS,
     USERS,
-    DEVICES,
 };

@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import * as components from './_index-components';
 import * as primeblocks from './primeblocks/_index-primeblocks';
@@ -15,6 +15,7 @@ import { AppSakaiLayoutModule } from './sakai/app.layout.module';
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         PrimengModule,
         RouterModule,
         PipesModule,

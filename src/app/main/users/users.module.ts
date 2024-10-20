@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { UsersComponent } from './users.component';
 import { UsersListComponent } from './users-list/users-list.component';
@@ -16,19 +17,21 @@ import { SharedModule } from '@shared/shared.module';
     declarations: [UsersComponent, UsersListComponent, UsersDetailsComponent],
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         SharedModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: UsersListComponent,
+                data: { reuseRoute: true },
             },
             {
-                path: ':id/editar',
+                path: 'new',
                 component: UsersDetailsComponent,
                 canDeactivate: [CanDeactivateFormGuard],
             },
             {
-                path: 'new',
+                path: ':id',
                 component: UsersDetailsComponent,
                 canDeactivate: [CanDeactivateFormGuard],
             },

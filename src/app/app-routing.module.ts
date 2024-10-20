@@ -5,7 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { appRoutesNames } from './app-routes-names';
 
 /**GUARDS */
-import { AuthGuard } from '@core/guards/can-activate/auth-can-activate.guard';
+import { AuthCanActivateGuard } from '@core/guards/can-activate/auth-can-activate.guard';
+import { AuthCanLoadGuard } from '@core/guards/can-load/auth-can-load.guard';
 
 const routes: Routes = [
     {
@@ -17,7 +18,8 @@ const routes: Routes = [
         path: appRoutesNames.MAIN.url,
         loadChildren: () =>
             import('./main/main.module').then((m) => m.MainModule),
-        canActivate: [AuthGuard],
+        // canActivate: [AuthCanActivateGuard],
+        // canMatch: [AuthCanLoadGuard],
     },
     {
         path: appRoutesNames.AUTH.url,
@@ -34,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,21 +1,9 @@
-<!-- <app-form-header
-    imageUrl="/assets/images/logo_smartcheckup.png"
-    imageStyleClass="w-5"
-    header="{{ authRoutesNames.SIGNUP.label }} here!"
-></app-form-header> -->
-<picture class="flex flex-column align-items-center">
-    <source
-        class="w-6 mx-auto mb-4 min-w-xx"
-        media="(max-width: 576px)"
-        srcset="/assets/images/logo_smartcheckup_h.png"
-    />
-    <img
-        class="w-7 mx-auto mb-4 border-circle p-5 bg-white"
-        src="/assets/images/logo_smartcheckup.png"
-        alt="Logo Smartcheckup"
-    />
-</picture>
 <div class="auth-box surface-card w-screen p-5 pt-6 sm:p-7 fadein">
+    <app-form-header
+        imageUrl="/assets/images/undraw_signup.svg"
+        imageStyleClass="w-5"
+        header="{{ authRoutesNames.SIGNUP.label }} here!"
+    ></app-form-header>
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <div class="field">
             <label for="name" class="text-900">Name</label>

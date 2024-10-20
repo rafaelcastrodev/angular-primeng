@@ -1,12 +1,12 @@
 import { MenuItem } from 'primeng/api';
 
 const NOT_AUTH_REDIRECT: MenuItem = {
-    label: 'Página Não Encontrada',
+    label: 'Page Not Found',
     url: '404',
 };
 const AUTH: MenuItem = {
-    label: 'Autenticação',
-    url: 'aut',
+    label: 'Authentication',
+    url: 'auth',
     icon: 'pi pi-fw pi-shield',
 };
 const MAIN: MenuItem = {

@@ -1,0 +1,21 @@
+<p-messages [severity]="severity" [styleClass]="styleClass">
+    <ng-template pTemplate>
+        @if (icon) {
+            <i class="{{ icon }} mr-3"></i>
+        }
+        <div class="w-full flex align-items-center justify-content-between">
+            <div [innerHTML]="text"></div>
+            @if (actionButton) {
+                <button
+                    pButton
+                    [label]="actionButton"
+                    size="small"
+                    class="p-button-{{
+                        severity | severityToButton
+                    }} min-w-max-content h-content"
+                    (click)="clickOnAction()"
+                ></button>
+            }
+        </div>
+    </ng-template>
+</p-messages>

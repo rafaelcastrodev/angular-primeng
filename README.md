@@ -8,18 +8,20 @@ The project relies on the following dependencies:
 
 ### Production Dependencies
 
--   **angular**: Version 16
--   **chart.js**: Version 4.3.0
--   **primeflex**: Version 3.3.0
--   **primeicons**: Version 6.0.1
--   **primeng**: Version 16.0.0-rc.1
--   **quill**: Version 1.3.7
+-   **angular**: Version 18.2.2
+-   **chart.js**: Version 4.4.4
+-   **primeflex**: Version 3.3.1
+-   **primeicons**: Version 7.0.0
+-   **primeng**: Version 17.18.9
+-   **quill**: Version 2.0.2
 
 ### Development Dependencies
 
--   **angular-eslint/schematics**: Version 16.0.2
--   **eslint**: Version 8.40.0
--   **eslint-plugin-prettier**: Version 4.2.1
+-   **nodejs**: Version 20.10.0
+-   **angular-eslint/schematics**: Version 18.2.0
+-   **eslint**: Version 9.9.1
+-   **eslint-plugin-prettier**: Version 5.2.1
+-   **jwt-decode**: Version 4.0.0
 
 ## Features
 
@@ -41,6 +43,7 @@ The Angular project includes the following features:
     -   Use of PathLocationStrategy instead of HashLocationStrategy
     -   Custom form validator for controls that must match like password and confirmPassword
     -   Auth Guard (CanActivate) using functional guards
+    -   Confirm leave page Guard (CanDeactivate) using functional guards to prevent leaving without persist changes
     -   Particular way to define routes using a external file (\*-routes-names.ts)
 
 The user interface incorporates the [PrimeNG](https://www.primefaces.org/sakai-ng/#/) theme, providing a visually appealing and consistent design. Additionally, the project includes relevant images obtained from [Undraw.co](https://undraw.co) to enhance the overall appearance.
@@ -73,19 +76,3 @@ For additional information and support, refer to the following resources:
 -   Angular Documentation: https://angular.io/docs
 -   PrimeNG Documentation: https://www.primefaces.org/primeng/showcase
 -   Undraw: https://undraw.co
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Acknowledgments
-
-Special thanks to the creators and contributors of the [PrimeNG Sakai](https://www.primefaces.org/sakai-ng/#/) theme and [Undraw.co](https://undraw.co) for their valuable resources and designs.
-
-## Contributors
-
--   **Rafael de Castro**
-
-If you have contributed to this project, feel free to add your name and link to your GitHub profile above.
-
-We appreciate your interest and contributions to this project!

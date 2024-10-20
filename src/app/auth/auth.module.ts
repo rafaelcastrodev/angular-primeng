@@ -5,15 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AUTH_ROUTES } from './auth-routing.module';
 
 /**MODULES */
-import { SharedModule } from 'primeng/api';
+import { SharedModule } from '@shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { CheckboxModule } from 'primeng/checkbox';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
-import { DividerModule } from 'primeng/divider';
-import { PasswordModule } from 'primeng/password';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { FormControlInvalidPipe } from '@shared/pipes/form-control-invalid.pipe';
 
 /**COMPONENTS */
 import { AuthComponent } from './auth.component';
@@ -26,31 +19,8 @@ import { FormFooterComponent } from './shared/components/form-footer/form-footer
 import { ValidateOtpComponent } from './validate-otp/validate-otp.component';
 
 @NgModule({
-    declarations: [
-        AuthComponent,
-        SigninComponent,
-        SignupComponent,
-        RecoverPasswordComponent,
-        ForgotPasswordComponent,
-        ValidateOtpComponent,
-    ],
+    declarations: [AuthComponent, SigninComponent, SignupComponent, RecoverPasswordComponent, ForgotPasswordComponent, ValidateOtpComponent],
     exports: [],
-    imports: [
-        RouterModule,
-        CommonModule,
-        AUTH_ROUTES,
-        ReactiveFormsModule,
-        FormsModule,
-        CheckboxModule,
-        InputTextModule,
-        ButtonModule,
-        DividerModule,
-        PasswordModule,
-        OverlayPanelModule,
-        FormFooterComponent,
-        FormHeaderComponent,
-        FormControlInvalidPipe,
-        SharedModule,
-    ],
+    imports: [RouterModule, CommonModule, AUTH_ROUTES, ReactiveFormsModule, FormsModule, FormFooterComponent, FormHeaderComponent, SharedModule],
 })
 export class AuthModule {}

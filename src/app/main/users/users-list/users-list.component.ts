@@ -1,147 +1,137 @@
-import { Component } from '@angular/core';
-import { ButtonActionInterface } from '@app/shared/components/button-action-menu/models/button-action.interface';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**MODELS */
+import { mainRoutesNames } from '@main/main-routes-names';
+import { ButtonActionInterface } from '@shared/components/button-action-menu/models/button-action.interface';
+import { PaginatedResourceInterface } from '@core/models/paginated-resource.interface';
+import { UserInterface } from '../shared/models/user.interface';
 
 /**SERVICES */
+import { UsersAPIService } from '../shared/services/users-api.service';
+import { DialogMessage } from '@core/components/dialog-message/services/dialog-message.service';
 
 @Component({
     selector: 'app-users-list',
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',
 })
-export class UsersListComponent {
-    products!: any[];
-    constructor() {
-        this.products = this.getProductsSmall();
+export class UsersListComponent implements OnInit {
+    mainRoutesNames = mainRoutesNames;
+    listItemsPaginated!: PaginatedResourceInterface;
+    isLoadingResources: boolean = false;
+    filters!: PaginatedResourceInterface | undefined;
+
+    constructor(
+        private _usersAPIService: UsersAPIService,
+        private _router: Router,
+        private _acRouter: ActivatedRoute
+    ) {}
+
+    ngOnInit() {
+        this.getResources();
     }
 
-    onClickActionMenu(event: ButtonActionInterface) {
-        console.log(event);
+    async onClickActionMenu(menu: ButtonActionInterface) {
+        const user: UserInterface = menu.payload!;
+
+        switch (menu.id) {
+            case 'update':
+                await this._router.navigate([user.id], {
+                    relativeTo: this._acRouter,
+                });
+                break;
+            case 'delete':
+                DialogMessage.confirmDialog(
+                    'error',
+                    'Delete User',
+                    `Are you sure you want to delete?:<br>
+                    <strong>${user.name}</strong> ?<br><br>
+                    This action cannot be undone.`,
+                    'Delete',
+                    'Cancel',
+                    () => this.deleteItem(user)
+                );
+
+                break;
+            default:
+                break;
+        }
     }
 
-    getProductsSmall() {
-        return [
-            {
-                id: '1000',
-                code: 'f230fh0g3',
-                name: 'Bamboo Watch',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 65,
-                category: 'Accessories',
-                quantity: 24,
-                inventoryStatus: 'INSTOCK',
-                rating: 5,
-            },
-            {
-                id: '1001',
-                code: 'nvklal433',
-                name: 'Black Watch',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 72,
-                category: 'Accessories',
-                quantity: 61,
-                inventoryStatus: 'INSTOCK',
-                rating: 4,
-            },
-            {
-                id: '1002',
-                code: 'zz21cz3c1',
-                name: 'Blue Band',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 79,
-                category: 'Fitness',
-                quantity: 2,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 3,
-            },
-            {
-                id: '1003',
-                code: '244wgerg2',
-                name: 'Blue T-Shirt',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 29,
-                category: 'Clothing',
-                quantity: 25,
-                inventoryStatus: 'INSTOCK',
-                rating: 5,
-            },
-            {
-                id: '1004',
-                code: 'h456wer53',
-                name: 'Bracelet',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 15,
-                category: 'Accessories',
-                quantity: 73,
-                inventoryStatus: 'INSTOCK',
-                rating: 4,
-            },
-            {
-                id: '1005',
-                code: 'av2231fwg',
-                name: 'Brown Purse',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 120,
-                category: 'Accessories',
-                quantity: 0,
-                inventoryStatus: 'OUTOFSTOCK',
-                rating: 4,
-            },
-            {
-                id: '1006',
-                code: 'bib36pfvm',
-                name: 'Chakra Bracelet',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 32,
-                category: 'Accessories',
-                quantity: 5,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 3,
-            },
-            {
-                id: '1007',
-                code: 'mbvjkgip5',
-                name: 'Galaxy Earrings',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 34,
-                category: 'Accessories',
-                quantity: 23,
-                inventoryStatus: 'INSTOCK',
-                rating: 5,
-            },
-            {
-                id: '1008',
-                code: 'vbb124btr',
-                name: 'Game Controller',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 99,
-                category: 'Electronics',
-                quantity: 2,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 4,
-            },
-            {
-                id: '1009',
-                code: 'cm230f032',
-                name: 'Gaming Set',
-                description: 'Product Description',
-                image: 'https://sakai.primeng.org/assets/demo/images/product/bamboo-watch.jpg',
-                price: 299,
-                category: 'Electronics',
-                quantity: 63,
-                inventoryStatus: 'INSTOCK',
-                rating: 3,
-            },
-        ];
+    onSearch(event: PaginatedResourceInterface) {
+        this.filters = event;
+        this.getResources(this.filters);
+    }
+
+    onPageChange(event: any) {
+        if (!this.filters) {
+            this.filters = {};
+        }
+        this.filters.sortby = 'name';
+        this.filters.page = event.page;
+        this.filters.page_size = event.rows;
+
+        this.getResources(this.filters);
+    }
+
+    retryGetResources() {
+        this.getResources();
+    }
+
+    private async deleteItem(user: UserInterface) {
+        try {
+            const result = await this._usersAPIService.delete(user.id);
+
+            DialogMessage.success(
+                'Deletion completed',
+                `${result.message}<br><strong>${user.name}</strong>`
+            );
+
+            this.getResources(this.filters);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    private async getResources(filters?: PaginatedResourceInterface) {
+        try {
+            this.isLoadingResources = true;
+            // const result = await this._usersAPIService.getAll(filters);
+            const result = this.getMockUsers();
+            this.listItemsPaginated = result as PaginatedResourceInterface;
+
+            this.filters = filters;
+        } catch (error) {
+            console.error(error);
+        } finally {
+            this.isLoadingResources = false;
+        }
+    }
+
+    private getMockUsers(): PaginatedResourceInterface {
+        return {
+            page_size: 10,
+            page: 0,
+            first: 0,
+            rows: [
+                {
+                    id: 'uuid',
+                    name: 'Demo 1',
+                    email: 'demo1@email.com',
+                    role_id: '1',
+                    role: { name: 'Admin' },
+                },
+                {
+                    id: 'uuid',
+                    name: 'Demo 2',
+                    email: 'demo2@email.com',
+                    role_id: '2',
+                    role: { name: 'Manager' },
+                },
+            ],
+            sortby: 'name',
+            total_records: 2,
+        };
     }
 }
